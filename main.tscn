@@ -1,7 +1,6 @@
 [gd_scene format=3 uid="uid://cipousenwx442"]
 
 [ext_resource type="Script" uid="uid://d3otikwjygnfa" path="res://main.gd" id="1_1bvp3"]
-[ext_resource type="Texture2D" uid="uid://b5xpmrlc43shs" path="res://assets/icon.svg" id="1_h2yge"]
 [ext_resource type="PackedScene" uid="uid://q5vw0oat7kos" path="res://player.tscn" id="2_1bvp3"]
 [ext_resource type="PackedScene" uid="uid://cxoangtq6njom" path="res://enemy.tscn" id="3_lquwl"]
 
@@ -23,9 +22,13 @@ metadata/_edit_group_ = true
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=429342548]
 shape = SubResource("RectangleShape2D_rxg2q")
 
-[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D" unique_id=251881618]
-scale = Vector2(0.15608233, 0.1575516)
-texture = ExtResource("1_h2yge")
+[node name="ColorRect" type="ColorRect" parent="StaticBody2D" unique_id=700167518]
+offset_left = -10.277383
+offset_top = -9.782618
+offset_right = 29.722618
+offset_bottom = 30.217382
+scale = Vector2(0.51709574, 0.5244299)
+color = Color(0.6096655, 0.24001491, 0.9961682, 1)
 
 [node name="Player" parent="." unique_id=1092509755 instance=ExtResource("2_1bvp3")]
 position = Vector2(275, 151)
