@@ -1,0 +1,77 @@
+[gd_scene format=3 uid="uid://dks6hrnrwfxfw"]
+
+[ext_resource type="Script" uid="uid://cnvg6k21dq6a6" path="res://magic_projectile.gd" id="1_pyyvo"]
+[ext_resource type="Texture2D" uid="uid://cjs4ehd2c5ujf" path="res://assets/vampire_lord/PNG/Vampires1/Parts/Vampires1_Attack_magic.png" id="2_5p3m0"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qxf0c"]
+atlas = ExtResource("2_5p3m0")
+region = Rect2(320, 192, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dgwo2"]
+atlas = ExtResource("2_5p3m0")
+region = Rect2(384, 192, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sxmqc"]
+atlas = ExtResource("2_5p3m0")
+region = Rect2(448, 192, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2xblw"]
+atlas = ExtResource("2_5p3m0")
+region = Rect2(576, 192, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dac07"]
+atlas = ExtResource("2_5p3m0")
+region = Rect2(640, 192, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0c7x6"]
+atlas = ExtResource("2_5p3m0")
+region = Rect2(704, 192, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_sw250"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qxf0c")
+}],
+"loop": 1,
+"name": &"fly",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dgwo2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sxmqc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2xblw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dac07")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0c7x6")
+}],
+"loop": 0,
+"name": &"land",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_p4n6i"]
+
+[node name="Projectile" type="Area2D" unique_id=1398592847]
+script = ExtResource("1_pyyvo")
+metadata/_edit_group_ = true
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1559231513]
+sprite_frames = SubResource("SpriteFrames_sw250")
+animation = &"fly"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=66601964]
+position = Vector2(2, -3)
+rotation = -1.5707964
+scale = Vector2(0.76, 1)
+shape = SubResource("CapsuleShape2D_p4n6i")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

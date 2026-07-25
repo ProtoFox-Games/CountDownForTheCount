@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://bduj358cckxah" path="res://player.gd" id="1_kpjcp"]
 [ext_resource type="Texture2D" uid="uid://bqa01cdb62u58" path="res://assets/vampire_lord/PNG/Vampires1/Without_shadow/Vampires1_Attack_without_shadow.png" id="2_2hs0m"]
+[ext_resource type="PackedScene" uid="uid://dks6hrnrwfxfw" path="res://magic_projectile.tscn" id="2_b26j0"]
 [ext_resource type="Texture2D" uid="uid://bvetaiaycfp6a" path="res://assets/vampire_lord/PNG/Vampires1/Without_shadow/Vampires1_Idle_without_shadow.png" id="2_e80uo"]
 [ext_resource type="Texture2D" uid="uid://1gwbx4x5bg7" path="res://assets/vampire_lord/PNG/Vampires1/Without_shadow/Vampires1_Run_without_shadow.png" id="3_cxr5p"]
 [ext_resource type="Texture2D" uid="uid://bjbckggywsjvx" path="res://assets/vampire_lord/PNG/Vampires1/Without_shadow/Vampires1_Death_without_shadow.png" id="4_1jxqw"]
@@ -140,12 +141,32 @@ region = Rect2(128, 192, 64, 64)
 atlas = ExtResource("2_e80uo")
 region = Rect2(192, 192, 64, 64)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_tkwlq"]
+atlas = ExtResource("2_2hs0m")
+region = Rect2(0, 192, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hl5qd"]
+atlas = ExtResource("2_2hs0m")
+region = Rect2(64, 192, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ek41f"]
+atlas = ExtResource("2_2hs0m")
+region = Rect2(128, 192, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_khis8"]
+atlas = ExtResource("2_2hs0m")
+region = Rect2(192, 192, 64, 64)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_n7ghd"]
 atlas = ExtResource("3_cxr5p")
 region = Rect2(320, 192, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_nvl01"]
 atlas = ExtResource("3_cxr5p")
+region = Rect2(384, 192, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hiqhm"]
+atlas = ExtResource("2_2hs0m")
 region = Rect2(384, 192, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_r3kul"]
@@ -322,6 +343,35 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_tkwlq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hl5qd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ek41f")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_khis8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_khis8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ek41f")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hl5qd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tkwlq")
+}],
+"loop": 0,
+"name": &"interact",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_n7ghd")
 }, {
 "duration": 1.0,
@@ -330,6 +380,14 @@ animations = [{
 "loop": 0,
 "name": &"land",
 "speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hiqhm")
+}],
+"loop": 0,
+"name": &"shoot",
+"speed": 5.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -355,13 +413,11 @@ animations = [{
 "speed": 10.0
 }]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_sw250"]
-radius = 3.0
-
 [node name="Player" type="CharacterBody2D" unique_id=1092509755]
 collision_layer = 3
 collision_mask = 3
 script = ExtResource("1_kpjcp")
+magic_projectile_ = ExtResource("2_b26j0")
 metadata/_edit_group_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=899553566]
@@ -370,17 +426,19 @@ shape = SubResource("RectangleShape2D_xhfnw")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1092860830]
 scale = Vector2(0.25, 0.25)
 sprite_frames = SubResource("SpriteFrames_xhfnw")
-animation = &"dash_2"
+animation = &"attack"
+frame = 3
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1244322281]
 
 [node name="Area2D" type="Area2D" parent="." unique_id=1683961705]
-collision_layer = 2
-collision_mask = 2
+collision_layer = 3
+collision_mask = 3
 metadata/_edit_group_ = true
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=406607091]
-position = Vector2(5, 0)
-shape = SubResource("CircleShape2D_sw250")
+[node name="CollisionShape2D" type="CollisionPolygon2D" parent="Area2D" unique_id=793691931]
+position = Vector2(5.4, 0)
+scale = Vector2(0.31199884, 0.27999997)
+polygon = PackedVector2Array(-10.256447, 0, 8.974394, -10.714287, -0.64102745, 0, 8.974394, 10.714287)
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

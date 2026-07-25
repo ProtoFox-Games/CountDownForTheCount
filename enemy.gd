@@ -2,7 +2,7 @@ extends CharacterBody2D
 
 # Constants
 const H_VELOCITY: float = 150.0
-const HURT_DURATION: float = 0.5
+const HURT_DURATION: float = 0.3
 const ACTIVATION_DISTANCE: float = 100.0
 const ATTACK_DISTANCE: float = 50.0
 const MELEE_DAMAGE: float = 10
@@ -66,6 +66,7 @@ func state_process_(delta: float) -> void:
 			state_celebrate_()
 
 func state_idle_() -> void:
+	velocity.x = move_toward(velocity.x, 0.0, H_VELOCITY)
 	var direction = 0.0
 	if is_enemy_activated_():
 		direction = get_enemy_direction_()
@@ -163,7 +164,7 @@ func state_celebrate_() -> void:
 # ------------- Godot Overrides Begin -----------------
 
 func _ready() -> void:
-	player_.player_attack_.connect(on_melee_damage_)
+	player_.player_interact_.connect(on_melee_damage_)
 	player_.player_die_.connect(on_player_death_)
 	attack_area_.monitoring = false
 	attack_area_.monitorable = false
@@ -188,7 +189,7 @@ func is_within_range_() -> bool:
 func get_enemy_direction_() -> float:
 	return (player_.position.x - position.x) / absf(player_.position.x - position.x)
 
-func on_melee_damage_(enemy: CharacterBody2D, damage: float) -> void:
+func on_melee_damage_(enemy: CharacterBody2D, damage: float, _ba: bool) -> void:
 	if enemy == self:
 		damage_taken_ = damage
 		state_change_(EnemyState.HURT)
