@@ -1,0 +1,45 @@
+[gd_scene format=3 uid="uid://bs6qlxmfrtclu"]
+
+[ext_resource type="Texture2D" uid="uid://byumnbfakdg6i" path="res://assets/levels/castle/props_sheet.png" id="1_i3qqe"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f3qhp"]
+atlas = ExtResource("1_i3qqe")
+region = Rect2(120, 83, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u1my3"]
+atlas = ExtResource("1_i3qqe")
+region = Rect2(504, 83, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x0om8"]
+atlas = ExtResource("1_i3qqe")
+region = Rect2(888, 83, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dvc4m"]
+atlas = ExtResource("1_i3qqe")
+region = Rect2(1272, 83, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_eksds"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f3qhp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u1my3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_x0om8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dvc4m")
+}],
+"loop": 1,
+"name": &"idle",
+"speed": 5.0
+}]
+
+[node name="Torch" type="AnimatedSprite2D" unique_id=1465894504]
+sprite_frames = SubResource("SpriteFrames_eksds")
+animation = &"idle"
+autoplay = "idle"
+frame_progress = 0.89902186
