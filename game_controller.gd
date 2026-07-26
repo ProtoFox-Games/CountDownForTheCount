@@ -2,9 +2,11 @@ extends Node
 
 const PLAYER_SCALE: float = 5.0
 const DRACULA_SCALE: float = 1.5
+const PLAYER_Z_INDEX: int = 5
 
 const LEVELS: Array = [
-	"res://levels/tutorial.tscn"
+	"res://levels/tutorial.tscn",
+	"res://levels/tutorial2.tscn"
 ]
 
 var current_level_: Level = null
@@ -20,9 +22,11 @@ func _ready() -> void:
 	add_child(current_level_)
 	player_.position = current_level_.player_spawn_point_.position
 	player_.scale *= PLAYER_SCALE
+	player_.z_index = PLAYER_Z_INDEX
 	
 	dracula_.position = current_level_.dracula_spawn_point_.position
 	dracula_.scale *= DRACULA_SCALE
+	dracula_.z_index = PLAYER_Z_INDEX
 	dracula_.player_ = player_
 	dracula_.player_.player_interact_.connect(dracula_.on_melee_damage_)
 	
@@ -31,6 +35,7 @@ func _ready() -> void:
 	current_level_.exit_door_.player_entered_door_.connect(current_level_.on_player_entered_door_)
 	current_level_.exit_door_.player_exited_door_.connect(current_level_.on_player_exited_door_)
 	current_level_.level_end_.connect(on_level_end_)
+	current_level_.level_init_()
 
 
 func change_level_():
@@ -49,6 +54,7 @@ func change_level_():
 	current_level_.exit_door_.player_entered_door_.connect(current_level_.on_player_entered_door_)
 	current_level_.exit_door_.player_exited_door_.connect(current_level_.on_player_exited_door_)
 	current_level_.level_end_.connect(on_level_end_)
+	current_level_.level_init_()
 	player_.visible = true
 	dracula_.visible = true
 
@@ -57,4 +63,4 @@ func on_level_end_():
 	print("level ended signal received")
 	player_.visible = false
 	dracula_.visible = false
-	#change_level_()
+	change_level_()

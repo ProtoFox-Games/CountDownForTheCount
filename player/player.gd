@@ -157,13 +157,22 @@ func state_dash_() -> void:
 	if direction != 0.0:
 		current_direction_ = direction
 	velocity.x = current_direction_ * DASH_VELOCITY
+	set_collision_mask_value(1, false)
+	set_collision_layer_value(1, false)
+	set_collision_mask_value(2, false)
+	set_collision_layer_value(2, false)
 	
-	sprite_.animation = ANIMATIONS[PlayerState.DASH]
-	#sprite_.animation = "dash_2"
+	#sprite_.animation = ANIMATIONS[PlayerState.DASH]
+	sprite_.animation = "dash_2"
 	sprite_.flip_h = current_direction_ < 0
 	sprite_.play()
 	
 	await sprite_.animation_finished
+	
+	set_collision_mask_value(1, true)
+	set_collision_layer_value(1, true)
+	set_collision_mask_value(2, true)
+	set_collision_layer_value(2, true)
 	
 	if not is_on_floor():
 		state_change_(PlayerState.FALL)
@@ -343,7 +352,7 @@ func _physics_process(delta: float) -> void:
 
 # -------------- Local Helpers Begin --------------------
 
-func on_melee_damage_(body: Node2D, damage: float) -> void:
+func on_melee_damage_(body: Node2D, damage: float, _unused: bool) -> void:
 	if body == self:
 		damage_taken_ = damage
 		state_change_(PlayerState.HURT)
@@ -357,7 +366,6 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 		blood_acquired_ = true
 		body.queue_free()
 	else:
-		print("player detects other body")
 		player_interact_.emit(body, attack_damage_, blood_acquired_)
 	
 

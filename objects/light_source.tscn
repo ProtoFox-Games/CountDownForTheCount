@@ -1,0 +1,24 @@
+[gd_scene format=3 uid="uid://3f1olqlbgfq2"]
+
+[sub_resource type="Curve2D" id="Curve2D_bxm2r"]
+
+[sub_resource type="Gradient" id="Gradient_bxm2r"]
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_sw250"]
+gradient = SubResource("Gradient_bxm2r")
+width = 256
+height = 256
+fill = 1
+fill_from = Vector2(1, 1)
+fill_to = Vector2(0, 0)
+
+[node name="LightSource" type="Path2D" unique_id=1674160432]
+curve = SubResource("Curve2D_bxm2r")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="." unique_id=908879146]
+
+[node name="PointLight2D" type="PointLight2D" parent="PathFollow2D" unique_id=87406643]
+scale = Vector2(20.08, 11.2)
+energy = 4.0
+shadow_enabled = true
+texture = SubResource("GradientTexture2D_sw250")

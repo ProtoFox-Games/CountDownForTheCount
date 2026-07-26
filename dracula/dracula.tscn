@@ -369,6 +369,8 @@ animations = [{
 }]
 
 [node name="Dracula" type="CharacterBody2D" unique_id=1269618367]
+collision_layer = 3
+collision_mask = 3
 script = ExtResource("1_5e2yb")
 metadata/_edit_group_ = true
 

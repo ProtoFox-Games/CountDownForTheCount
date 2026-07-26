@@ -1,5 +1,4 @@
 extends Node2D
-
 @export var enemy_scene: PackedScene
 var light_destination: float
 

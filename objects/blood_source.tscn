@@ -46,6 +46,7 @@ metadata/_edit_group_ = true
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1361282870]
 sprite_frames = SubResource("SpriteFrames_sw250")
 animation = &"idle"
+autoplay = "idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=365449516 groups=["blood_source"]]
 position = Vector2(0, 4)

@@ -1,9 +1,30 @@
 class_name Tutorial extends Level
 
+@export var enemy_scene: PackedScene
+
+
+func level_init_() -> void:
+	var enemy: CharacterBody2D = enemy_scene.instantiate()
+	connect_enemy_to_player_(enemy)
+	enemy.scale *= ENEMY_SCALE
+	enemy.position = $EnemySpawnPoint.position
+	add_child(enemy)
+	
+	sun_path_ = light_source_scene_.instantiate()
+	add_child(sun_path_)
+	set_sun_path_curve_()
+	sun_path_follow_ = sun_path_.get_node("PathFollow2D")
+	light_source_ = sun_path_follow_.get_node("PointLight2D")
+	light_source_.enabled = false
+	
+	super.set_physics_process(true)
+	set_physics_process(true)
+	night_timer_.start()
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	print("tutorial ready")
+	super._ready()
 	player_spawn_point_ = $PlayerSpawnPoint
 	dracula_spawn_point_ = $DraculaSpawnPoint
 	blood_source_ = $BloodSource
@@ -11,5 +32,6 @@ func _ready() -> void:
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	super._process(delta)
+func _physics_process(delta: float) -> void:
+	super._physics_process(delta)
+	

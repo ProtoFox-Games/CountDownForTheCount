@@ -25,7 +25,7 @@ var health_: float = 50
 var hurt_timer_: float = 0.0
 var damage_taken_: float = 0.0
 
-signal enemy_attack_(player: CharacterBody2D, damage: float)
+signal enemy_attack_(player: CharacterBody2D, damage: float, _unused: bool)
 
 # --------------- State Machine Begin -------------------
 
@@ -202,6 +202,6 @@ func on_player_death_() -> void:
 # ----------------- Signals Begin -----------------------
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
-	enemy_attack_.emit(body, MELEE_DAMAGE)
+	enemy_attack_.emit(body, MELEE_DAMAGE, false)
 
 # ------------------ Signals End -------------------------

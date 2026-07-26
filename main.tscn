@@ -97,7 +97,7 @@ position = Vector2(103, -1)
 rotation = 0.02040533
 
 [node name="PointLight2D" type="PointLight2D" parent="Path2D/PathFollow2D" unique_id=1160730579]
-position = Vector2(-0.9997902, 0.02040388)
+position = Vector2(290.77618, -13.935875)
 scale = Vector2(20.439999, 12.519999)
 energy = 4.31
 shadow_enabled = true

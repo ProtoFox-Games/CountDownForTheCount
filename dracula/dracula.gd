@@ -187,7 +187,6 @@ func is_within_distance_() -> bool:
 
 
 func on_melee_damage_(enemy: Node2D, damage: float, blood_acquired: bool) -> void:
-	
 	if enemy == self:
 		if blood_acquired and damage == 0.0:
 			healed_ = true
