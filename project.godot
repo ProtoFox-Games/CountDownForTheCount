@@ -11,14 +11,16 @@ config_version=5
 [application]
 
 config/name="CountDownForTheCount"
+config/version="0.01"
 run/main_scene="uid://c0hl1syo4o2ns"
 config/features=PackedStringArray("4.7", "Forward Plus")
+boot_splash/image="uid://dxgcoxp686q6c"
+config/icon="uid://dxgcoxp686q6c"
 
 [display]
 
-window/size/viewport_width=640
-window/size/viewport_height=360
-window/size/mode=2
+window/size/viewport_width=1280
+window/size/viewport_height=720
 window/stretch/mode="canvas_items"
 window/stretch/aspect="expand"
 window/stretch/scale_mode="integer"
@@ -82,3 +84,4 @@ open={
 
 textures/canvas_textures/default_texture_filter=0
 rendering_device/driver.windows="d3d12"
+textures/vram_compression/import_etc2_astc=true
