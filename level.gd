@@ -4,7 +4,7 @@ const ENEMY_SCALE: float = 1.5
 const DAY_DURATION: int = 5
 const NIGHT_DURATION: int = 10
 const SUN_OFFSET_X: float = 500.0
-const SUN_POSITION_Y: float = 0.0
+const SUN_POSITION_Y: float = -5.0
 const SUN_DELTA: float = 0.002
 
 # Components of light source.
@@ -39,12 +39,15 @@ var dracula_: CharacterBody2D
 
 signal cycle_(cycle: int)
 signal level_end_
+signal level_fail_
 
 # --------------- Functions to override ---------------------
 
 # Define any enemies in the level, or define enemy spawn
 # behavior. Connect enemy and player signals.
 @abstract func level_init_() -> void
+
+@abstract func setup_enemies_() -> void
 
 # ----------------- Helper Functions -------------------------
 
@@ -92,6 +95,8 @@ func setup_day_night_timers_() -> void:
 
 
 func set_sun_path_curve_() -> void:
+	if not player_:
+		return
 	var curve: Curve2D = Curve2D.new()
 	curve.add_point(Vector2(player_.position.x - SUN_OFFSET_X, SUN_POSITION_Y))
 	curve.add_point(Vector2(player_.position.x + SUN_OFFSET_X, SUN_POSITION_Y))
@@ -102,8 +107,7 @@ func on_day_timer_timeout_() -> void:
 	day_timer_.stop()
 	cycles_ += 1
 	if cycles_ == 5:
-		# Show game over screen
-		pass
+		level_fail_.emit()
 	cycle_.emit(6 - cycles_)
 	light_source_.enabled = false
 	hud_.timer_ = night_timer_

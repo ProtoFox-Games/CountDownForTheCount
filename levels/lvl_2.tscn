@@ -3,7 +3,6 @@
 [ext_resource type="Texture2D" uid="uid://dxbtgr50xrv65" path="res://assets/levels/castle/platform_sheet.png" id="1_1v3ac"]
 [ext_resource type="Texture2D" uid="uid://byumnbfakdg6i" path="res://assets/levels/castle/props_sheet.png" id="2_l31ol"]
 [ext_resource type="Texture2D" uid="uid://3qh1padyktij" path="res://assets/levels/castle/background.png" id="3_bmf8x"]
-[ext_resource type="PackedScene" uid="uid://q5vw0oat7kos" path="res://player/player.tscn" id="4_7rxco"]
 [ext_resource type="PackedScene" uid="uid://bs6qlxmfrtclu" path="res://objects/torch.tscn" id="5_pnnik"]
 [ext_resource type="PackedScene" uid="uid://cohxr607xlwh4" path="res://objects/blood_source.tscn" id="6_syjh8"]
 
@@ -465,11 +464,6 @@ position = Vector2(941, 180)
 scale = Vector2(2, 2)
 texture = ExtResource("3_bmf8x")
 metadata/_edit_lock_ = true
-
-[node name="Player" parent="." unique_id=1092509755 instance=ExtResource("4_7rxco")]
-z_index = 2
-position = Vector2(117.99999, 341.99997)
-scale = Vector2(5, 5)
 
 [node name="Torch" parent="." unique_id=1465894504 instance=ExtResource("5_pnnik")]
 z_index = 1

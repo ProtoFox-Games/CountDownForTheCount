@@ -127,7 +127,7 @@ func state_die_() -> void:
 	
 	await sprite_.animation_finished
 	
-	queue_free()
+	# queue_free()
 	# Show game over screen.
 
 
@@ -177,6 +177,10 @@ func _physics_process(delta: float) -> void:
 # -------------- Godot Overrides End --------------------
 
 # -------------- Local Helpers Begin --------------------
+
+func dracula_reset_() -> void:
+	healed_ = false
+	state_change_(DraculaState.WEAKENED)
 
 func get_dracula_direction_() -> float:
 	return (player_.position.x - position.x) / absf(player_.position.x - position.x)

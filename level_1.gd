@@ -1,4 +1,4 @@
-class_name Tutorial extends Level
+extends Level
 
 @export var enemy_scene: PackedScene
 
@@ -7,12 +7,20 @@ func setup_enemies_() -> void:
 	var enemy: CharacterBody2D = enemy_scene.instantiate()
 	connect_enemy_to_player_(enemy)
 	enemy.scale *= ENEMY_SCALE
-	enemy.position = $EnemySpawnPoint.position
+	enemy.position = $EnemySpawnPoint1.position
 	add_child(enemy)
+	
+	var enemy1: CharacterBody2D = enemy_scene.instantiate()
+	connect_enemy_to_player_(enemy1)
+	enemy1.scale *= ENEMY_SCALE
+	enemy1.position = $EnemySpawnPoint2.position
+	add_child(enemy1)
 	
 	super.set_physics_process(true)
 	set_physics_process(true)
 	night_timer_.start()
+
+# ----------------- Helper Functions -------------------------:
 
 func level_init_() -> void:
 	# Setup HUD
@@ -36,8 +44,14 @@ func level_init_() -> void:
 	var enemy: CharacterBody2D = enemy_scene.instantiate()
 	connect_enemy_to_player_(enemy)
 	enemy.scale *= ENEMY_SCALE
-	enemy.position = $EnemySpawnPoint.position
+	enemy.position = $EnemySpawnPoint1.position
 	add_child(enemy)
+	
+	var enemy1: CharacterBody2D = enemy_scene.instantiate()
+	connect_enemy_to_player_(enemy1)
+	enemy1.scale *= ENEMY_SCALE
+	enemy1.position = $EnemySpawnPoint2.position
+	add_child(enemy1)
 	
 	super.set_physics_process(true)
 	set_physics_process(true)

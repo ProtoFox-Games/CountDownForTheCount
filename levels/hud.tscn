@@ -45,27 +45,27 @@ theme_override_styles/fill = SubResource("StyleBoxFlat_sw250")
 value = 100.0
 show_percentage = false
 
-[node name="DraculaHead1" type="AnimatedSprite2D" parent="." unique_id=1255255282]
+[node name="DraculaHead1" type="AnimatedSprite2D" parent="." unique_id=1255255282 groups=["ui_heads"]]
 position = Vector2(15, 38)
 sprite_frames = SubResource("SpriteFrames_sw250")
 animation = &"idle"
 
-[node name="DraculaHead2" type="AnimatedSprite2D" parent="." unique_id=149837724]
+[node name="DraculaHead2" type="AnimatedSprite2D" parent="." unique_id=149837724 groups=["ui_heads"]]
 position = Vector2(38, 38)
 sprite_frames = SubResource("SpriteFrames_sw250")
 animation = &"idle"
 
-[node name="DraculaHead3" type="AnimatedSprite2D" parent="." unique_id=421889572]
+[node name="DraculaHead3" type="AnimatedSprite2D" parent="." unique_id=421889572 groups=["ui_heads"]]
 position = Vector2(62, 38)
 sprite_frames = SubResource("SpriteFrames_sw250")
 animation = &"idle"
 
-[node name="DraculaHead4" type="AnimatedSprite2D" parent="." unique_id=51573779]
+[node name="DraculaHead4" type="AnimatedSprite2D" parent="." unique_id=51573779 groups=["ui_heads"]]
 position = Vector2(86, 38)
 sprite_frames = SubResource("SpriteFrames_sw250")
 animation = &"idle"
 
-[node name="DraculaHead5" type="AnimatedSprite2D" parent="." unique_id=2058248354]
+[node name="DraculaHead5" type="AnimatedSprite2D" parent="." unique_id=2058248354 groups=["ui_heads"]]
 position = Vector2(109, 38)
 sprite_frames = SubResource("SpriteFrames_sw250")
 animation = &"idle"

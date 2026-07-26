@@ -7,8 +7,9 @@ func on_health_changed_(damage: float) -> void:
 
 
 func on_cycle_passed_(cycle: int) -> void:
+	#var sprite: AnimatedSprite2D = #get_tree().get_first_node_in_group("")
 	var sprite: AnimatedSprite2D = get_node("DraculaHead" + str(cycle))
-	sprite.hide()
+	sprite.visible = false
 
 
 func _physics_process(_delta: float) -> void:

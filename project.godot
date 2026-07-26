@@ -28,6 +28,8 @@ window/stretch/scale_mode="integer"
 exit_doors=""
 blood_source=""
 player=""
+ui_heads=""
+enemies=""
 
 [input]
 

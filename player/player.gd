@@ -329,7 +329,7 @@ func state_die_() -> void:
 	
 	# Show game over screen.
 	# Restart current level.
-	queue_free()
+	# queue_free()
 
 
 func state_interact_() -> void:
@@ -381,6 +381,11 @@ func on_melee_damage_(body: Node2D, damage: float, _unused: bool) -> void:
 	if body == self:
 		damage_taken_ = damage
 		state_change_(PlayerState.HURT)
+
+func player_reset_() -> void:
+	health_ = 100.0
+	state_change_(PlayerState.IDLE)
+	
 
 # --------------- Local Helpers End ---------------------
 

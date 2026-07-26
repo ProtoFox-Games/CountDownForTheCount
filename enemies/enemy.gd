@@ -181,13 +181,23 @@ func _physics_process(delta: float) -> void:
 # -------------- Local Helpers Begin --------------------
 
 func is_enemy_activated_() -> bool:
+	if not player_:
+		return false
 	return absf(player_.position.x - position.x) < ACTIVATION_DISTANCE and absf(player_.position.y - position.y) < ACTIVATION_DISTANCE
 
 func is_within_range_() -> bool:
+	if not player_:
+		return false
 	return absf(player_.position.x - position.x) < ATTACK_DISTANCE and absf(player_.position.y - position.y) < ATTACK_DISTANCE
 
 func get_enemy_direction_() -> float:
+	if not player_:
+		return 1.0
 	return (player_.position.x - position.x) / absf(player_.position.x - position.x)
+	
+func enemy_reset_() -> void:
+	health_ = 50.0
+	state_change_(EnemyState.IDLE)
 
 func on_melee_damage_(enemy: CharacterBody2D, damage: float, _ba: bool) -> void:
 	if enemy == self:
