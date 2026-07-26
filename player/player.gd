@@ -4,7 +4,7 @@ extends CharacterBody2D
 const H_VELOCITY: float = 300.0
 const V_VELOCITY: float = -400.0
 const DASH_VELOCITY: float = 600.0
-const HURT_DURATION: float = 0.3
+const HURT_DURATION: float = 0.2
 const LAND_DURATION: float = 0.1
 const MELEE_DAMAGE: float = 25.0
 const ANIMATIONS: Array = [
@@ -26,7 +26,7 @@ const ANIMATIONS: Array = [
 @onready var sprite_: AnimatedSprite2D = $AnimatedSprite2D
 @onready var attack_area_: Area2D = $Area2D
 @onready var raycast_: RayCast2D = $RayCast2D
-var light_source_: PointLight2D = null
+var light_source_: PointLight2D
 var current_direction_: float = 1.0
 var current_state_: PlayerState = PlayerState.IDLE
 var health_: float = 100.0
@@ -39,6 +39,7 @@ var blood_acquired_: bool = false
 
 # Signals
 signal player_interact_(enemy: Node2D, damage: float, blood_acquired: bool)
+signal player_health_change_(damage: float)
 signal player_die_
 
 # --------------- State Machine Begin -------------------
@@ -276,14 +277,36 @@ func state_hurt_(delta: float) -> void:
 	# Slow down faster than normal.
 	velocity.x = move_toward(velocity.x, 0.0, H_VELOCITY * 2.0)
 	
+	#sprite_.animation = ANIMATIONS[PlayerState.HURT]
+	#sprite_.flip_h = current_direction_ < 0
+	#sprite_.play()
+	
+	#await  sprite_.animation_finished
+	
 	health_ -= damage_taken_
+	player_health_change_.emit(damage_taken_)
+	#set_collision_mask_value(1, false)
+	#set_collision_layer_value(1, false)
+	#set_collision_mask_value(2, false)
+	#set_collision_layer_value(2, false)
+	
 	damage_taken_ = 0.0
 	if health_ <= 0.0:
 		state_change_(PlayerState.DIE)
 	
 	hurt_timer_ -= delta
 	var direction: float = Input.get_axis("move_left", "move_right")
+	#if direction != 0.0:
+	#	current_direction_ = direction
+	#	state_change_(PlayerState.WALK)
+	#else:
+	#	state_change_(PlayerState.IDLE)
+		
 	if hurt_timer_ <= 0.0:
+		#set_collision_mask_value(1, true)
+		#set_collision_layer_value(1, true)
+		#set_collision_mask_value(2, true)
+		#set_collision_layer_value(2, true)
 		if direction != 0.0:
 			current_direction_ = direction
 			state_change_(PlayerState.WALK)
@@ -340,10 +363,12 @@ func _physics_process(delta: float) -> void:
 		velocity += get_gravity() * delta
 	
 	if light_source_ != null:
-		raycast_.target_position = raycast_.to_local(light_source_.global_position)
+		#raycast_.target_position = raycast_.to_local(light_source_.global_position)
+		raycast_.target_position = light_source_.global_position
 		raycast_.force_raycast_update()
 		if light_source_.enabled and not raycast_.is_colliding():
-			state_change_(PlayerState.DIE)
+			damage_taken_ = 25.0
+			state_change_(PlayerState.HURT)
 	
 	state_process_(delta)
 	move_and_slide()

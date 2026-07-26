@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://cohxr607xlwh4" path="res://objects/blood_source.tscn" id="4_rbh7r"]
 [ext_resource type="PackedScene" uid="uid://k5fc2yq86tfs" path="res://objects/exit_door.tscn" id="5_0fvvq"]
 [ext_resource type="PackedScene" uid="uid://cxoangtq6njom" path="res://enemies/enemy.tscn" id="7_c633x"]
+[ext_resource type="PackedScene" uid="uid://y0k708tx81w4" path="res://levels/hud.tscn" id="9_vvqp3"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_rbh7r"]
 
@@ -368,6 +369,7 @@ polygon = PackedVector2Array(1123, 198, 1265, 197, 1264, 212, 1123, 212)
 script = ExtResource("1_aaho8")
 enemy_scene = ExtResource("7_c633x")
 light_source_scene_ = ExtResource("3_gdrka")
+hud_scene_ = ExtResource("9_vvqp3")
 metadata/_edit_group_ = true
 
 [node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=1791291991]
@@ -532,3 +534,5 @@ occluder = SubResource("OccluderPolygon2D_vvqp3")
 [node name="LightOccluder2D4" type="LightOccluder2D" parent="." unique_id=1603901098]
 position = Vector2(62, 11)
 occluder = SubResource("OccluderPolygon2D_bp3yb")
+
+[node name="Hud" parent="." unique_id=985397990 instance=ExtResource("9_vvqp3")]

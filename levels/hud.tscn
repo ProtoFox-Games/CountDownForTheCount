@@ -1,0 +1,71 @@
+[gd_scene format=3 uid="uid://y0k708tx81w4"]
+
+[ext_resource type="Texture2D" uid="uid://d1d8sl0elomne" path="res://assets/vampires/dracula/parts/idle_head.png" id="1_l4040"]
+[ext_resource type="Script" uid="uid://dfkrbwo15657u" path="res://levels/hud.gd" id="1_ysc4d"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_wvfef"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sw250"]
+bg_color = Color(0.9093465, 0.25282577, 0.21464902, 1)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ysc4d"]
+atlas = ExtResource("1_l4040")
+region = Rect2(192, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_sw250"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ysc4d")
+}],
+"loop": 0,
+"name": &"idle",
+"speed": 5.0
+}]
+
+[node name="Hud" type="CanvasLayer" unique_id=985397990]
+script = ExtResource("1_ysc4d")
+
+[node name="Timer" type="Label" parent="." unique_id=367598048]
+offset_left = 8.0
+offset_top = 44.0
+offset_right = 58.0
+offset_bottom = 67.0
+theme_override_colors/font_color = Color(1, 0.019607844, 0.043137256, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+label_settings = SubResource("LabelSettings_wvfef")
+
+[node name="HealthBar" type="ProgressBar" parent="." unique_id=685803087]
+offset_left = 3.0000005
+offset_top = 6.0
+offset_right = 43.0
+offset_bottom = 46.0
+scale = Vector2(4.6000004, 0.39999682)
+theme_override_styles/fill = SubResource("StyleBoxFlat_sw250")
+value = 100.0
+show_percentage = false
+
+[node name="DraculaHead1" type="AnimatedSprite2D" parent="." unique_id=1255255282]
+position = Vector2(15, 38)
+sprite_frames = SubResource("SpriteFrames_sw250")
+animation = &"idle"
+
+[node name="DraculaHead2" type="AnimatedSprite2D" parent="." unique_id=149837724]
+position = Vector2(38, 38)
+sprite_frames = SubResource("SpriteFrames_sw250")
+animation = &"idle"
+
+[node name="DraculaHead3" type="AnimatedSprite2D" parent="." unique_id=421889572]
+position = Vector2(62, 38)
+sprite_frames = SubResource("SpriteFrames_sw250")
+animation = &"idle"
+
+[node name="DraculaHead4" type="AnimatedSprite2D" parent="." unique_id=51573779]
+position = Vector2(86, 38)
+sprite_frames = SubResource("SpriteFrames_sw250")
+animation = &"idle"
+
+[node name="DraculaHead5" type="AnimatedSprite2D" parent="." unique_id=2058248354]
+position = Vector2(109, 38)
+sprite_frames = SubResource("SpriteFrames_sw250")
+animation = &"idle"

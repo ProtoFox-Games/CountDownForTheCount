@@ -2,20 +2,30 @@ class_name Tutorial extends Level
 
 @export var enemy_scene: PackedScene
 
-
 func level_init_() -> void:
-	var enemy: CharacterBody2D = enemy_scene.instantiate()
-	connect_enemy_to_player_(enemy)
-	enemy.scale *= ENEMY_SCALE
-	enemy.position = $EnemySpawnPoint.position
-	add_child(enemy)
+	# Setup HUD
+	hud_ = hud_scene_.instantiate()
+	player_.player_health_change_.connect(hud_.on_health_changed_)
+	hud_.timer_ = night_timer_
+	cycle_.connect(hud_.on_cycle_passed_)
+	add_child(hud_)
 	
+	# Setup light source.
 	sun_path_ = light_source_scene_.instantiate()
 	add_child(sun_path_)
 	set_sun_path_curve_()
 	sun_path_follow_ = sun_path_.get_node("PathFollow2D")
 	light_source_ = sun_path_follow_.get_node("PointLight2D")
 	light_source_.enabled = false
+	
+	player_.light_source_ = light_source_
+	
+	# Setup enemies
+	var enemy: CharacterBody2D = enemy_scene.instantiate()
+	connect_enemy_to_player_(enemy)
+	enemy.scale *= ENEMY_SCALE
+	enemy.position = $EnemySpawnPoint.position
+	add_child(enemy)
 	
 	super.set_physics_process(true)
 	set_physics_process(true)

@@ -28,12 +28,16 @@ var night_timer_: Timer
 var cycles_: int
 var in_door_area_: bool
 
+@export var hud_scene_: PackedScene
+var hud_: CanvasLayer
+
 # Managed by GameManager
 # Do not instantiate new objects of these.
 # Essentially just pointers.
 var player_: CharacterBody2D
 var dracula_: CharacterBody2D
 
+signal cycle_(cycle: int)
 signal level_end_
 
 # --------------- Functions to override ---------------------
@@ -48,6 +52,25 @@ func connect_enemy_to_player_(enemy: CharacterBody2D) -> void:
 	enemy.player_ = player_
 	enemy.enemy_attack_.connect(player_.on_melee_damage_)
 	enemy.enemy_attack_.connect(dracula_.on_melee_damage_)
+
+
+func setup_hud_() -> void:
+	hud_ = hud_scene_.instantiate()
+	player_.player_health_change_.connect(hud_.on_health_changed_)
+	hud_.timer_ = night_timer_
+	cycle_.connect(hud_.on_cycle_passed_)
+	add_child(hud_)
+
+
+func setup_light_source_() -> void:
+	sun_path_ = light_source_scene_.instantiate()
+	add_child(sun_path_)
+	set_sun_path_curve_()
+	sun_path_follow_ = sun_path_.get_node("PathFollow2D")
+	light_source_ = sun_path_follow_.get_node("PointLight2D")
+	light_source_.enabled = false
+	
+	player_.light_source_ = light_source_
 
 
 func setup_day_night_timers_() -> void:
@@ -77,7 +100,13 @@ func set_sun_path_curve_() -> void:
 
 func on_day_timer_timeout_() -> void:
 	day_timer_.stop()
+	cycles_ += 1
+	if cycles_ == 5:
+		# Show game over screen
+		pass
+	cycle_.emit(6 - cycles_)
 	light_source_.enabled = false
+	hud_.timer_ = night_timer_
 	night_timer_.start()
 
 
@@ -86,6 +115,7 @@ func on_night_timer_timeout_() -> void:
 	set_sun_path_curve_()
 	sun_path_follow_.progress = 0.0
 	light_source_.enabled = true
+	hud_.timer_ = day_timer_
 	day_timer_.start()
 
 
