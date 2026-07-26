@@ -1,0 +1,52 @@
+[gd_scene format=3 uid="uid://cohxr607xlwh4"]
+
+[ext_resource type="Texture2D" uid="uid://byumnbfakdg6i" path="res://assets/levels/castle/props_sheet.png" id="1_4tusi"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vqxof"]
+atlas = ExtResource("1_4tusi")
+region = Rect2(200, 82, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y7d7d"]
+atlas = ExtResource("1_4tusi")
+region = Rect2(584, 82, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f8q3b"]
+atlas = ExtResource("1_4tusi")
+region = Rect2(968, 82, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6eidh"]
+atlas = ExtResource("1_4tusi")
+region = Rect2(1352, 82, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_sw250"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vqxof")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_y7d7d")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f8q3b")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6eidh")
+}],
+"loop": 1,
+"name": &"idle",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_p4n6i"]
+
+[node name="BloodSource" type="StaticBody2D" unique_id=1753644062]
+metadata/_edit_group_ = true
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1361282870]
+sprite_frames = SubResource("SpriteFrames_sw250")
+animation = &"idle"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=365449516 groups=["blood_source"]]
+position = Vector2(0, 4)
+shape = SubResource("CircleShape2D_p4n6i")

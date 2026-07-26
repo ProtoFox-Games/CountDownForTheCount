@@ -1,19 +1,35 @@
 [gd_scene format=3 uid="uid://cipousenwx442"]
 
 [ext_resource type="Script" uid="uid://d3otikwjygnfa" path="res://main.gd" id="1_1bvp3"]
-[ext_resource type="PackedScene" uid="uid://q5vw0oat7kos" path="res://player.tscn" id="2_1bvp3"]
-[ext_resource type="PackedScene" uid="uid://cxoangtq6njom" path="res://enemy.tscn" id="3_lquwl"]
-[ext_resource type="PackedScene" uid="uid://bsj63hvv240ow" path="res://dracula.tscn" id="4_1bvp3"]
+[ext_resource type="PackedScene" uid="uid://q5vw0oat7kos" path="res://player/player.tscn" id="2_1bvp3"]
+[ext_resource type="PackedScene" uid="uid://cxoangtq6njom" path="res://enemies/enemy.tscn" id="3_lquwl"]
+[ext_resource type="PackedScene" uid="uid://bsj63hvv240ow" path="res://dracula/dracula.tscn" id="4_1bvp3"]
+[ext_resource type="Texture2D" uid="uid://cpa0kegrf0dkw" path="res://assets/levels/GraveYard/Backgrounds/Forbidden_Graveyard_2D_Platformer_Tileset_Background - Layer 00.png" id="5_lquwl"]
+[ext_resource type="PackedScene" uid="uid://cohxr607xlwh4" path="res://objects/blood_source.tscn" id="6_7mycd"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_glv2v"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rxg2q"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_p4n6i"]
-size = Vector2(21, 18)
-
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_sw250"]
 size = Vector2(120, 20)
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_1bvp3"]
+polygon = PackedVector2Array(1, 0, 121, 0, 122, 21, 0, 21)
+
+[sub_resource type="Curve2D" id="Curve2D_7mycd"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 103, -1, 0, 0, 0, 0, 348, 4)
+}
+point_count = 2
+
+[sub_resource type="Gradient" id="Gradient_1bvp3"]
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_sw250"]
+gradient = SubResource("Gradient_1bvp3")
+fill = 1
+fill_from = Vector2(1, 1)
+fill_to = Vector2(0, 0)
 
 [node name="Node2D" type="Node2D" unique_id=1723604129]
 script = ExtResource("1_1bvp3")
@@ -45,24 +61,6 @@ scale = Vector2(5, 5)
 position = Vector2(71, 276)
 scale = Vector2(1.5, 1.5)
 
-[node name="BloodSource" type="StaticBody2D" parent="." unique_id=434672189]
-position = Vector2(589, 277)
-metadata/_edit_group_ = true
-
-[node name="ColorRect" type="ColorRect" parent="BloodSource" unique_id=1830845107]
-offset_right = 40.0
-offset_bottom = 40.0
-scale = Vector2(0.51998043, 0.44000003)
-color = Color(1, 0.08627451, 0.11764706, 1)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="BloodSource" unique_id=697630909]
-position = Vector2(10.5, 9)
-shape = SubResource("RectangleShape2D_p4n6i")
-
-[node name="DirectionalLight2D" type="DirectionalLight2D" parent="." unique_id=340520097]
-position = Vector2(322, 20)
-shadow_enabled = true
-
 [node name="Platform" type="StaticBody2D" parent="." unique_id=542684021]
 light_mask = 2
 visibility_layer = 3
@@ -79,3 +77,31 @@ offset_top = 7.0
 offset_right = 22.0
 offset_bottom = 47.0
 scale = Vector2(3, 0.48)
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="Platform" unique_id=736643427]
+position = Vector2(-19, 6)
+occluder = SubResource("OccluderPolygon2D_1bvp3")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1093026710]
+z_index = -1
+position = Vector2(328, 203)
+scale = Vector2(0.48836783, 0.53533083)
+texture = ExtResource("5_lquwl")
+
+[node name="Path2D" type="Path2D" parent="." unique_id=325473859]
+curve = SubResource("Curve2D_7mycd")
+metadata/_edit_group_ = true
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Path2D" unique_id=1336380542]
+position = Vector2(103, -1)
+rotation = 0.02040533
+
+[node name="PointLight2D" type="PointLight2D" parent="Path2D/PathFollow2D" unique_id=1160730579]
+position = Vector2(-0.9997902, 0.02040388)
+scale = Vector2(20.439999, 12.519999)
+energy = 4.31
+shadow_enabled = true
+texture = SubResource("GradientTexture2D_sw250")
+
+[node name="BloodSource" parent="." unique_id=1753644062 groups=["blood_source"] instance=ExtResource("6_7mycd")]
+position = Vector2(602, 281)

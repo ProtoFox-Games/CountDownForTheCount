@@ -1,11 +1,12 @@
 extends Node2D
 
 @export var enemy_scene: PackedScene
-var ticks: int
+var light_destination: float
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	ticks = 0
+	light_destination = 1.0
+	$Player.light_source_ = $Path2D/PathFollow2D/PointLight2D
 	$Dracula.player_ = $Player
 	$Dracula.player_.player_interact_.connect($Dracula.on_melee_damage_)
 	var enemy: CharacterBody2D = enemy_scene.instantiate()
@@ -29,9 +30,10 @@ func _ready() -> void:
 	
 
 func _physics_process(delta: float) -> void:
-	ticks += 1
-	if ticks == 300:
-		$DirectionalLight2D.enabled = false
-	if ticks == 600:
-		$DirectionalLight2D.enabled = true
-		ticks = 0
+	$Path2D/PathFollow2D.progress_ratio = move_toward($Path2D/PathFollow2D.progress_ratio, light_destination, 0.001)
+	if $Path2D/PathFollow2D.progress_ratio == 1.0:
+		light_destination = 0.0
+		$Path2D/PathFollow2D/PointLight2D.enabled = false
+	if $Path2D/PathFollow2D.progress_ratio == 0.0:
+		light_destination = 1.0
+		$Path2D/PathFollow2D/PointLight2D.enabled = true

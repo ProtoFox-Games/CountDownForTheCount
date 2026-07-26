@@ -1,14 +1,14 @@
 [gd_scene format=3 uid="uid://cyj7msplfb4vn"]
 
-[ext_resource type="Texture2D" uid="uid://cpa0kegrf0dkw" path="res://assets/Lvl/GraveYard/Backgrounds/Forbidden_Graveyard_2D_Platformer_Tileset_Background - Layer 00.png" id="1_to53a"]
-[ext_resource type="Texture2D" uid="uid://cxywc1texpbmg" path="res://assets/Lvl/GraveYard/Platfromer/Forbidden_Graveyard_2D_Platformer_Tileset_Platformer - Ground 01.png" id="2_7cckx"]
-[ext_resource type="Texture2D" uid="uid://ygmgkg7tvxo7" path="res://assets/Lvl/GraveYard/Platfromer/Forbidden_Graveyard_2D_Platformer_Tileset_Platformer - Ground 02.png" id="3_3ajkr"]
-[ext_resource type="Texture2D" uid="uid://ddh1rjerwuf5g" path="res://assets/Lvl/GraveYard/Platfromer/Forbidden_Graveyard_2D_Platformer_Tileset_Platformer - Ground 03.png" id="4_dmpkb"]
-[ext_resource type="Texture2D" uid="uid://cw8i3cv7seu68" path="res://assets/Lvl/GraveYard/Platfromer/Forbidden_Graveyard_2D_Platformer_Tileset_Platformer - Ground 10.png" id="5_2n8m6"]
-[ext_resource type="Texture2D" uid="uid://bssob533syutb" path="res://assets/Lvl/GraveYard/Platfromer/Forbidden_Graveyard_2D_Platformer_Tileset_Platformer - Ground 12.png" id="6_ffww5"]
-[ext_resource type="Texture2D" uid="uid://brq7ghunskdvo" path="res://assets/Lvl/GraveYard/Platfromer/Forbidden_Graveyard_2D_Platformer_Tileset_Platformer - Ground 11.png" id="7_gaijn"]
-[ext_resource type="PackedScene" uid="uid://q5vw0oat7kos" path="res://player.tscn" id="8_snxaw"]
-[ext_resource type="PackedScene" uid="uid://bsj63hvv240ow" path="res://dracula.tscn" id="9_e0lbh"]
+[ext_resource type="Texture2D" uid="uid://cpa0kegrf0dkw" path="res://assets/levels/GraveYard/Backgrounds/Forbidden_Graveyard_2D_Platformer_Tileset_Background - Layer 00.png" id="1_to53a"]
+[ext_resource type="Texture2D" uid="uid://cxywc1texpbmg" path="res://assets/levels/GraveYard/Platfromer/Forbidden_Graveyard_2D_Platformer_Tileset_Platformer - Ground 01.png" id="2_7cckx"]
+[ext_resource type="Texture2D" uid="uid://ygmgkg7tvxo7" path="res://assets/levels/GraveYard/Platfromer/Forbidden_Graveyard_2D_Platformer_Tileset_Platformer - Ground 02.png" id="3_3ajkr"]
+[ext_resource type="Texture2D" uid="uid://ddh1rjerwuf5g" path="res://assets/levels/GraveYard/Platfromer/Forbidden_Graveyard_2D_Platformer_Tileset_Platformer - Ground 03.png" id="4_dmpkb"]
+[ext_resource type="Texture2D" uid="uid://cw8i3cv7seu68" path="res://assets/levels/GraveYard/Platfromer/Forbidden_Graveyard_2D_Platformer_Tileset_Platformer - Ground 10.png" id="5_2n8m6"]
+[ext_resource type="Texture2D" uid="uid://bssob533syutb" path="res://assets/levels/GraveYard/Platfromer/Forbidden_Graveyard_2D_Platformer_Tileset_Platformer - Ground 12.png" id="6_ffww5"]
+[ext_resource type="Texture2D" uid="uid://brq7ghunskdvo" path="res://assets/levels/GraveYard/Platfromer/Forbidden_Graveyard_2D_Platformer_Tileset_Platformer - Ground 11.png" id="7_gaijn"]
+[ext_resource type="PackedScene" uid="uid://q5vw0oat7kos" path="res://player/player.tscn" id="8_snxaw"]
+[ext_resource type="PackedScene" uid="uid://bsj63hvv240ow" path="res://dracula/dracula.tscn" id="9_e0lbh"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2et8v"]
 size = Vector2(167, 36.799988)
